@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>IT Inventory CISTECH</h2>
+    <form method="GET" action="{{ url_for('add_inventory') }}">
+    <button type="submit" class="add-button spaced-button">Add New Item</button> </form>
+    <form method="GET" action="{{ url_for('inventory') }}" class="search-form">
+	<input type="text" name="search" placeholder="Search..." value="{{ request.args.get('search','') }}">
+	<button type="submit">Search</button>
+	</form>
+    <table>
+        <tr>
+	    <th>No.</th>
+            <th>Nama</th>
+            <th>Brand</th>
+            <th>Type</th>
+            <th>Spesifikasi</th>
+            <th>No. Computer</th>
+            <th>Purchased Date</th>
+            <th>Status</th>
+            <th>Addition</th>
+            <th>Email Active</th>
+            <th>Actions</th>
+        </tr>
+        {% for item in items %}
+        <tr>
+	    <td>{{ loop.index }}</td>
+            <td>{{ item.nama }}</td>
+            <td>{{ item.brand }}</td>
+            <td>{{ item.type }}</td>
+            <td>{{ item.spesifikasi }}</td>
+            <td {% if item.blink %}style="animation: blink 1s linear infinite;"{% endif %}>{{ item.no_computer }}</td>
+            <td>{{ item.purchased_date.strftime('%Y-%m-%d') }}</td>
+            <td>{{ item.status }}</td>
+            <td>{{ item.addition }}</td>
+            <td>{{ item.email_active }}</td>
+            <td>
+                <a href="{{ url_for('edit_inventory', id=item.id) }}">Edit</a>
+                <form action="{{ url_for('delete_inventory', id=item.id) }}" method="post" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Edit Inventory Item</h2>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.nama.label }}<br>
+            {{ form.nama(size=32) }}<br>
+            {% for error in form.nama.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.brand.label }}<br>
+            {{ form.brand(size=32) }}<br>
+            {% for error in form.brand.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.type.label }}<br>
+            {{ form.type(size=32) }}<br>
+            {% for error in form.type.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.spesifikasi.label }}<br>
+            {{ form.spesifikasi(cols=32, rows=4) }}<br>
+            {% for error in form.spesifikasi.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.no_computer.label }}<br>
+            {{ form.no_computer(size=32) }}<br>
+            {% for error in form.no_computer.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.purchased_date.label }}<br>
+            {{ form.purchased_date() }}<br>
+            {% for error in form.purchased_date.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.status.label }}<br>
+            {{ form.status(size=32) }}<br>
+            {% for error in form.status.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.addition.label }}<br>
+            {{ form.addition(cols=32, rows=4) }}<br>
+            {% for error in form.addition.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.email_active() }} {{ form.email_active.label }}<br>
+        </div>
+        <div>
+            {{ form.submit() }}
+        </div>
+    </form>
+{% endblock %}
